@@ -1,0 +1,99 @@
+.container {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    position: relative;
+}
+.UserDetailsContainer {
+    border: 1px solid black;
+    border-radius: 13px;
+    padding: 8px 10px 8px 30px; 
+}
+.UserDetails {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center; 
+}
+.userDetailP {
+    padding: 0px;
+    margin: 0px;
+    text-align: left;
+}
+.userName {
+    flex: 1;
+    font-size: 20px;
+    font-weight: bold;
+}
+.usersData {
+    display: grid;
+    grid-template-columns: 4fr 4fr 4fr;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.columnName {
+    color:#909090;
+}
+.profileImage {
+    border-radius: 50%;
+}
+
+.descriptionContainer {
+    margin-top: 20px;
+}
+
+
+.iconContainer {
+    display: flex;
+    justify-content: end;
+    align-items: center; 
+}
+
+.deleteIcon {
+    width: 50px;
+    height: 30px;
+}
+.deleteIcon:hover {
+    cursor: pointer;
+}
+
+.editIcon {
+    width: 50px;
+    height: 30px;
+}
+.editIcon:hover {
+    cursor: pointer;
+}
+.cancelIcon {
+    width: 30px;
+}
+.cancelIcon:hover {
+    cursor: pointer;
+}
+.displayHideSection {
+    display: none;
+}
+.expandIcon:hover {
+    cursor: pointer;
+}
+.inputBorderHide {
+    border: none;
+    pointer-events: none;
+}
+.inputBorderShow {
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+}
+.saveContainer {
+    display: flex;
+    align-Items: center;
+}
+
+.inputBorderHide {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}

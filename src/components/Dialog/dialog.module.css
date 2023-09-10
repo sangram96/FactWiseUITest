@@ -1,0 +1,43 @@
+.container {
+  border: 1px solid #e9e9ed;
+  padding: 10px;
+  border-radius: 12px;
+  position: absolute;
+  z-index: 5;
+  width: 30%;
+  background-color: #fff;
+  top: 35%;
+  left: 35%;
+}
+.closeIcon {
+  position: absolute;
+  width: 25px;
+  right: 0;
+  margin-right: 10px;
+}
+.message {
+  text-align: left;
+}
+.btnContainer {
+  text-align: right;
+}
+.btn {
+  border: none;
+  padding: 10px 30px;
+  border-radius: 10px;
+  margin: 10px;
+}
+.cancelBtn {
+  background-color: #fff;
+  border: 2px solid #e9e9ed;
+}
+.DeleteBtn {
+  background-color: #ff0000;
+  color: #fff;
+}
+.btn:hover {
+  cursor: pointer;
+}
+.closeIcon:hover {
+  cursor: pointer;
+}
