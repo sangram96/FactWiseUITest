@@ -27,3 +27,60 @@ export type ArrayType = {
     description: string;
     age: number;
 }
+export type HeaderType = {
+    id: number;
+    ItemId: { id: string; editingItem: string };
+    imageUrl: string;
+    enableEditing: Boolean;
+    userNameRef: React.RefObject<HTMLInputElement>;
+    setValues: any;
+    validation: any;
+    expandHandler: () => void;
+    showExpand: Boolean;
+    expandMore: string;
+    expandLess: string;
+    values: {
+        first: string;
+        age: number;
+        gender: string;
+        country: string;
+        description: string;
+    }
+}
+export type FooterType = {
+    enableEditing: Boolean;
+    deleteIcon: string;
+    editIcon: string;
+    setShowModel: (e: boolean) => void;
+    cancelIcon: string;
+    save: string;
+    cancelHandler: () => void;
+    enableSaving: Boolean;
+    editRef: React.RefObject<HTMLImageElement>;
+    saveClick: () => void;
+    editClick: () => void;
+    values: {
+        first: string;
+        age: number;
+        gender: string;
+        country: string;
+        description: string;
+    }
+}
+
+export type UserDetailsType = {
+    enableEditing: Boolean;
+    values: {
+        first: string;
+        age: number;
+        gender: string;
+        country: string;
+        description: string;
+    };
+    ageRef: React.RefObject<HTMLInputElement>;
+    validation: (e: any) => void;
+    setValues: (e: any) => void;
+    genderRef: React.RefObject<HTMLSelectElement>;
+    countryRef: React.RefObject<HTMLInputElement>;
+    descriptionRef: React.RefObject<HTMLTextAreaElement>;
+}

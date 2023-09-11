@@ -1,24 +1,6 @@
 import style from '../Users/user.module.css';
-type FooterType = {
-    enableEditing: Boolean;
-    deleteIcon: string;
-    editIcon: string;
-    setShowModel: (e: boolean) => void;
-    cancelIcon: string;
-    save: string;
-    cancelHandler: () => void;
-    enableSaving: Boolean;
-    editRef: React.RefObject<HTMLImageElement>;
-    saveClick: () => void;
-    editClick: () => void;
-    values: {
-        first: string;
-        age: number;
-        gender: string;
-        country: string;
-        description: string;
-    }
-}
+import { FooterType } from '../../Util/TypeHelper';
+
 const Footer = ({enableEditing, deleteIcon, editIcon, setShowModel, cancelIcon, save, saveClick, cancelHandler, enableSaving, editRef, values, editClick} : FooterType) => {
     return (
         <div className={style.iconContainer}>

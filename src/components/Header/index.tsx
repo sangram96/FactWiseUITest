@@ -1,26 +1,8 @@
 import style from '../Users/user.module.css';
 import UserInput from '../UserInput';
 import { valuesType } from '../../Util/TypeHelper';
-type HeaderType = {
-    id: number;
-    ItemId: { id: string; editingItem: string };
-    imageUrl: string;
-    enableEditing: Boolean;
-    userNameRef: React.RefObject<HTMLInputElement>;
-    setValues: any;
-    validation: any;
-    expandHandler: () => void;
-    showExpand: Boolean;
-    expandMore: string;
-    expandLess: string;
-    values: {
-        first: string;
-        age: number;
-        gender: string;
-        country: string;
-        description: string;
-    }
-}
+import { HeaderType } from '../../Util/TypeHelper';
+
 const Header = ({ id, ItemId, imageUrl, userNameRef, setValues, enableEditing, validation, expandHandler, showExpand, expandLess, expandMore, values }: HeaderType) => {
     return (
         <div className={style.UserDetails}>

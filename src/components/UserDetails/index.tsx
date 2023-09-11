@@ -1,22 +1,7 @@
 import style from '../Users/user.module.css';
 import UserInput from '../UserInput';
 import { valuesType } from '../../Util/TypeHelper';
-type UserDetailsType = {
-    enableEditing: Boolean;
-    values: {
-        first: string;
-        age: number;
-        gender: string;
-        country: string;
-        description: string;
-    };
-    ageRef: React.RefObject<HTMLInputElement>;
-    validation: (e: any) => void;
-    setValues: (e: any) => void;
-    genderRef: React.RefObject<HTMLSelectElement>;
-    countryRef: React.RefObject<HTMLInputElement>;
-    descriptionRef: React.RefObject<HTMLTextAreaElement>;
-}
+import { UserDetailsType } from '../../Util/TypeHelper';
 const UserDetails = ({enableEditing, values, validation, setValues, genderRef, countryRef, ageRef, descriptionRef} : UserDetailsType) => {
     const optionArr = ["Male", "Female", "Transgender", "Rather not say", "Other"];
     const columnArr = ['Age', 'Gender', 'Country'];
