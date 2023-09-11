@@ -66,6 +66,7 @@ const User = ({ id, userName, description, age, imageUrl, gender, country, dob }
         dispatch(UserActions.update({ data: d }))
     }
     const expandHandler = () => {
+        dispatch(SelectedItemAction.editingItem({ id: null }));
         setEnableEditing(false);
         setShowExpand(!showExpand);
         dispatch(SelectedItemAction.setSelectedItem({ id }));
@@ -85,7 +86,7 @@ const User = ({ id, userName, description, age, imageUrl, gender, country, dob }
     }, [ItemId.id]);
 
     const validation = (value: string) => {
-        if (value.length === 0) {
+        if (values.age === 0 || values.country.length === 0 || values.description.length === 0 || values.first.length === 0 || value.length === 0) {
             setEnableSaving(false);
             return;
         }

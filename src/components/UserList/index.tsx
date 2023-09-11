@@ -2,18 +2,8 @@ import { useEffect, useState } from 'react';
 import User from "../Users";
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
-type ArrayType = {
-    id: number,
-    first: string,
-    last: string,
-    dob: string,
-    gender: string,
-    email: string,
-    picture: string,
-    country: string,
-    description: string
-    age?: number;
-}
+import { ArrayType } from '../../Util/TypeHelper';
+
 const UserList = () => {
     let userJsonData = useSelector((state: { userReducer: Array<ArrayType> }) => state.userReducer);
     const [data, setData] = useState<any>(userJsonData);
