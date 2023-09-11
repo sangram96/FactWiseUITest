@@ -84,3 +84,9 @@ export type UserDetailsType = {
     countryRef: React.RefObject<HTMLInputElement>;
     descriptionRef: React.RefObject<HTMLTextAreaElement>;
 }
+
+export type DialogBoxType = {
+    show: Boolean;
+    setShow: (data: boolean) => void;
+    deleteHandler: () => void;
+}

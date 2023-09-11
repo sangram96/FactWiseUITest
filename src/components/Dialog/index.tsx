@@ -1,10 +1,7 @@
 import style from './dialog.module.css';
 import close from '../../images/close.svg';
-type DialogBoxType = {
-    show: Boolean;
-    setShow: (data: boolean) => void;
-    deleteHandler: () => void;
-}
+import { DialogBoxType } from '../../Util/TypeHelper';
+
 const DialogBox = (props: DialogBoxType) => {
     return (
         <div className={style.container} style={props.show ? { display: "block" } : { display: "none" }}>
