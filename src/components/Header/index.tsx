@@ -1,5 +1,6 @@
 import style from '../Users/user.module.css';
 import UserInput from '../UserInput';
+import { valuesType } from '../../Util/TypeHelper';
 type HeaderType = {
     id: number;
     ItemId: { id: string; editingItem: string };
@@ -20,17 +21,10 @@ type HeaderType = {
         description: string;
     }
 }
-type valuesType = {
-    first: string;
-    age: number;
-    gender: string;
-    country: string;
-    description: string;
-}
 const Header = ({ id, ItemId, imageUrl, userNameRef, setValues, enableEditing, validation, expandHandler, showExpand, expandLess, expandMore, values }: HeaderType) => {
     return (
         <div className={style.UserDetails}>
-            <img src={imageUrl} className={style.profileImage} />
+            <img alt={"Image"} src={imageUrl} className={style.profileImage} />
             <p className={`${style.userName} ${style.userDetailP}`}>
                 <UserInput inputRef={userNameRef} type="text" className={!enableEditing ? style.inputBorderHide : `${style.inputBorderShow}`} style={{ fontSize: "20px" }} value={values.first} changeHandler={(e: any) => {
                     validation(e.target.value);
@@ -42,7 +36,7 @@ const Header = ({ id, ItemId, imageUrl, userNameRef, setValues, enableEditing, v
                     })
                 }} />
             </p>
-            {(ItemId.editingItem === null || +ItemId.editingItem === id) && <img className={style.expandIcon} src={showExpand ? expandLess : expandMore } onClick={expandHandler} />}
+            {<img alt={"Image"} className={style.expandIcon} src={showExpand ? expandLess : expandMore } onClick={(ItemId.editingItem === null || +ItemId.editingItem === id) ? expandHandler : () => {}} />}
         </div>
     )
 }

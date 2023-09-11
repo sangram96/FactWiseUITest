@@ -15,16 +15,15 @@ type ArrayType = {
     age?: number;
 }
 const UserList = () => {
-    const dispactch = useDispatch();
     let userJsonData = useSelector((state: { userReducer: Array<ArrayType> }) => state.userReducer);
-    const [d, setD] = useState<any>(userJsonData);
-    const [userDetails, setUserDetails] = useState<Array<ArrayType>>(d);
+    const [data, setData] = useState<any>(userJsonData);
+    const [userDetails, setUserDetails] = useState<Array<ArrayType>>(data);
     useEffect(() => {
-        setD(userJsonData);
+        setData(userJsonData);
     }, [userJsonData]);
     useEffect(() => {
-        setUserDetails(d);
-    }, [d]);
+        setUserDetails(data);
+    }, [data]);
     useEffect(() => {
 
     }, []);

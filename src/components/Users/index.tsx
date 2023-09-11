@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
+import moment from 'moment';
 import expandMore from '../../images/expandmoreicon.svg';
 import expandLess from '../../images/expandlessicon.svg';
 import style from './user.module.css';
@@ -8,43 +9,14 @@ import editIcon from '../../images/editIcon.svg';
 import cancelIcon from '../../images/cancel.svg';
 import save from '../../images/save.svg';
 import DialogBox from '../Dialog';
-import UserInput from '../UserInput';
 import { UserActions, SelectedItemAction } from '../../store/actions';
 import ReactDOM from 'react-dom';
 import OverLay from '../Dialog/Overlay';
-import moment from 'moment';
 import Header from '../Header';
 import Footer from '../Footer';
+import { UserType, valuesType, ArrayType } from '../../Util/TypeHelper';
+import UserDetails from '../UserDetails';
 
-type UserType = {
-    id: number;
-    userName: string;
-    description: string;
-    age: number;
-    imageUrl: string;
-    gender: string;
-    country: string;
-    dob: string;
-}
-type valuesType = {
-    first: string;
-    age: number;
-    gender: string;
-    country: string;
-    description: string;
-}
-type ArrayType = {
-    id: number,
-    first: string,
-    last: string,
-    dob: string,
-    gender: string,
-    email: string,
-    picture: string,
-    country: string,
-    description: string;
-    age: number;
-}
 const User = ({ id, userName, description, age, imageUrl, gender, country, dob }: UserType) => {
     const dispatch = useDispatch();
     const editRef = useRef<HTMLImageElement>(null);
@@ -110,7 +82,7 @@ const User = ({ id, userName, description, age, imageUrl, gender, country, dob }
         } else {
             setShowExpand(false);
         }
-    }, [ItemId]);
+    }, [ItemId.id]);
 
     const validation = (value: string) => {
         if (value.length === 0) {
@@ -125,7 +97,7 @@ const User = ({ id, userName, description, age, imageUrl, gender, country, dob }
             <div className={style.container}>
                 <div className={style.UserDetailsContainer}>
                     {showModel && ReactDOM.createPortal(<OverLay><DialogBox deleteHandler={() => deleteHandler(id)} show={showModel} setShow={(data) => { setShowModel(data) }} /></OverLay>, document.getElementById("model") as HTMLElement)}
-                    <Header 
+                    <Header
                         id={id}
                         ItemId={ItemId}
                         imageUrl={imageUrl}
@@ -138,86 +110,19 @@ const User = ({ id, userName, description, age, imageUrl, gender, country, dob }
                         expandLess={expandLess}
                         expandMore={expandMore}
                         values={values}
-                     />
+                    />
                     <div style={showExpand ? { display: "block" } : { display: "none" }}>
-                        <div className={style.usersData}>
-                            {['Age', 'Gender', 'Country'].map((val) => {
-                                return <p className={`${style.userDetailP} ${style.columnName}`}>{val}</p>
-                            })}
-                            <p className={`${style.userDetailP} ${style.data}`}>
-                                <UserInput type="text"
-                                    className={!enableEditing ? style.inputBorderHide : `${style.inputBorderShow}`}
-                                    style={{
-                                        display: "inline",
-                                        width: "18px",
-                                        padding: !enableEditing ? "0px" : "5px"
-                                    }}
-                                    value={values.age}
-                                    inputRef={ageRef}
-                                    changeHandler={(e: any) => {
-                                        if (isNaN(e.target.value)) {
-                                            return;
-                                        }
-                                        validation(e.target.value);
-                                        setValues((v: valuesType) => {
-                                            return {
-                                                ...v,
-                                                age: +ageRef.current!.value,
-                                            }
-                                        })
-                                    }} /> years
-                            </p>
-                            <p className={`${style.userDetailP} ${style.data}`}>{!enableEditing ? values.gender : <select value={values.gender} className={!enableEditing ? style.inputBorderHide : style.inputBorderShow} ref={genderRef} onChange={(e: any) => {
-                                validation(e.target.value);
-                                setValues((v: valuesType) => {
-                                    return {
-                                        ...v,
-                                        gender: genderRef.current!.value,
-                                    }
-                                })
-                            }}>
-                                {["Male", "Female", "Transgender", "Rather not say", "Other"].map((val) => {
-                                    return <option value={val}>{val}</option>
-                                })}
-                            </select>}
-                            </p>
-                            <p className={`${style.userDetailP} ${style.data}`}>
-                                <UserInput type="text"
-                                    inputRef={countryRef}
-                                    className={!enableEditing ? style.inputBorderHide : style.inputBorderShow}
-                                    value={values.country}
-                                    style={{}}
-                                    changeHandler={(e: any) => {
-                                        const str = e.target.value;
-                                        if (str[str.length - 1] !== " " && Number.isInteger(+str[str.length - 1])) {
-                                            return;
-                                        }
-                                        validation(e.target.value);
-                                        setValues((v: valuesType) => {
-                                            return {
-                                                ...v,
-                                                country: countryRef.current!.value,
-                                            }
-                                        })
-                                    }} />
-                            </p>
-                        </div>
-                        <div className={style.descriptionContainer}>
-                            <p className={`${style.userDetailP} ${style.columnName}`}>Description</p>
-
-                            <textarea ref={descriptionRef} className={!enableEditing ? style.inputBorderHide : style.inputBorderShow} style={{ resize: "none", width: "100%", padding: "0px", paddingTop: "5px" }} rows={5} cols={30} onChange={(e: any) => {
-                                validation(e.target.value);
-                                setValues((v: valuesType) => {
-                                    return {
-                                        ...v,
-                                        description: descriptionRef.current!.value,
-                                    }
-                                })
-                            }} value={values.description}>
-                                {values.description}
-                            </textarea>
-                        </div>
-                        <Footer 
+                        <UserDetails
+                            enableEditing={enableEditing}
+                            values={values}
+                            ageRef={ageRef}
+                            validation={validation}
+                            setValues={setValues}
+                            genderRef={genderRef}
+                            countryRef={countryRef}
+                            descriptionRef={descriptionRef}
+                        />
+                        <Footer
                             enableEditing={enableEditing}
                             deleteIcon={deleteIcon}
                             editIcon={editIcon}
